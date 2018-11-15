@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart'as http;
+import 'package:login_mysql/model/adddata.dart';
 import 'detail.dart';
 class AdminPage extends StatefulWidget {
 
@@ -25,9 +26,14 @@ class _AdminPage extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text("MY STORE 2")),
-
-
+        appBar: new AppBar(title: new Text("MY STORE 2")
+        ),
+        floatingActionButton: new FloatingActionButton(
+            child: new Icon(Icons.add),
+            onPressed: ()=>Navigator.of(context).push(
+              new MaterialPageRoute(
+                  builder: (BuildContext context)=> new AddData(),)
+            )),
         body: new FutureBuilder<List>(
           future: getData(),
           builder: (context, snapshot) {
