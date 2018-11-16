@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart'as http;
-import 'package:login_mysql/model/adddata.dart';
-import 'detail.dart';
+import 'package:login_mysql/Mantenimiento/adddata.dart';
+import 'package:login_mysql/Mantenimiento/detail.dart';
 class AdminPage extends StatefulWidget {
 
   AdminPage({this.username});
