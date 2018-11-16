@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login_mysql/AdminPage.dart';
 import 'editdata.dart';
+import 'package:http/http.dart'as http;
+
 class Detail extends StatefulWidget {
   List list;
   int index;
@@ -10,6 +13,39 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
+
+  void deleteData() {
+    var url = "http://192.168.1.134/Login/deleteData.php";
+    http.post(url, body: {
+      'id': widget.list[widget.index]['id']
+    });
+  }
+
+  void confirm(){
+    AlertDialog alertDialog = new AlertDialog(
+      content: new Text("Estas seguro que quieres eliminar '${widget.list[widget.index]['item_name']}'"),
+      actions: <Widget>[
+        new RaisedButton(
+            child: new Text("ELIMINAR",style: new TextStyle(color: Colors.black),),
+            color: Colors.redAccent,
+            onPressed: (){
+              deleteData();
+              Navigator.of(context).push(
+                new MaterialPageRoute(
+                    builder: (BuildContext context)=>new AdminPage(), )
+              );
+            },),
+        new RaisedButton(
+            child: new Text("CANCELAR",style: new TextStyle(color: Colors.black),),
+            color: Colors.greenAccent,
+            onPressed: ()=>Navigator.pop(context),)
+      ],
+    );
+
+    showDialog(context: context,child: alertDialog);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -42,7 +78,7 @@ class _DetailState extends State<Detail> {
                     new RaisedButton(
                       child: new Text("DELETE"),
                       color: Colors.red,
-                      onPressed:(){},
+                      onPressed:()=>confirm(),
                     ),
                   ],
                 )
