@@ -7,12 +7,7 @@ class Admin {
   String password;
   String level;
 
-  //usamos el metodo creado en la clase util.dart
- // String getPosterUrl() => getMediumPictureUrl(image);
-  //String gettitle()=>gettitle(title);
-//ejemplo de u arraya en json
 
-//  List<dynamic>genreIds;
 
 
   factory Admin(Map jsonMap) {
